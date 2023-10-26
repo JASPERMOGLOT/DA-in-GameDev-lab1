@@ -41,74 +41,157 @@
 ### Выберите одну из игровых переменных в игре, опишите её роль в игре, условия изменения / появления и диапазон допустимых значений. Постройте схему экономической модели в игре и укажите место выбранного ресурса в ней.
 
 Ход работы:
+
+- Опишите роль выбранной переменной в игре.
+
 Я решил выбрать переменную "Здоровье главного героя" из игры Skyrim. В Скайриме здоровье ГГ - это количество урона, которое может получить главный герой.
 Количество вашего здоровья зависит от уровня вашего персонажа, и каждый раз, когда вы повышаете уровень, вы можете выбрать, добавлять ли десять очков к вашему здоровью или к одному из других ваших атрибутов.
 Ваш показатель здоровья также может быть увеличен с помощью эффектов укрепления здоровья, которые могут быть достигнуты с помощью чар, заклинаний и зелий.
 Скорость восстановления вашего здоровья может быть увеличена за счет эффектов восстановления здоровья, включая зелья и зачарованные предметы.
 Здоровье обычно автоматически восстанавливается в процентах от вашего максимального запаса здоровья в секунду, но в бою оно восстанавливается медленнее.
 В Скайриме здоровье влияет на вашу способность выживать в бою и выполнять задания. Если ваше здоровье достигнет нуля, вы умрете.
+Минимальное количество здоровья - 0 единиц. Максимальное (если при получении уровня качать только здоровья) - 900 единиц.
+
+- Постройте схему экономической модели этой переменной.
+
+Привожу скриншот:
+![ЗДОРОВЬЕ экономич модель](https://github.com/JASPERMOGLOT/DA-in-GameDev-lab1/assets/148428630/bda76609-ce7b-4a93-b511-872e8e708b6a)
 
 
 
 ## Задание 2
-### Должна ли величина loss стремиться к нулю при изменении исходных данных? Ответьте на вопрос, приведите пример выполнения кода, который подтверждает ваш ответ.
+### С помощью скрипта на языке Python заполните google-таблицу данными и средствами google-sheets визуализируйте данные в google-таблице для наглядного представления выбранной игровой величины.
 
-- Перечисленные в этом туториале действия могут быть выполнены запуском на исполнение скрипт-файла, доступного [в репозитории](https://github.com/Den1sovDm1triy/hfss-scripting/blob/main/ScreatingSphereInAEDT.py).
-- Для запуска скрипт-файла откройте Ansys Electronics Desktop. Перейдите во вкладку [Automation] - [Run Script] - [Выберите файл с именем ScreatingSphereInAEDT.py из репозитория].
+Ход работы:
 
-```py
+- Я решил описать выбранную переменную через модель боя с противником, во время которого главный герой получает урон, восстанавливает здоровье зельем, заклинанием и получением уровня.
+- Прилагаю скриншот со скриптом на Python с заполнением таблицы:
+![image](https://github.com/JASPERMOGLOT/DA-in-GameDev-lab1/assets/148428630/5fdea290-afb3-42c4-964a-4ab7d6d49109)
 
-import ScriptEnv
-ScriptEnv.Initialize("Ansoft.ElectronicsDesktop")
-oDesktop.RestoreWindow()
-oProject = oDesktop.NewProject()
-oProject.Rename("C:/Users/denisov.dv/Documents/Ansoft/SphereDIffraction.aedt", True)
-oProject.InsertDesign("HFSS", "HFSSDesign1", "HFSS Terminal Network", "")
-oDesign = oProject.SetActiveDesign("HFSSDesign1")
-oEditor = oDesign.SetActiveEditor("3D Modeler")
-oEditor.CreateSphere(
-	[
-		"NAME:SphereParameters",
-		"XCenter:="		, "0mm",
-		"YCenter:="		, "0mm",
-		"ZCenter:="		, "0mm",
-		"Radius:="		, "1.0770329614269mm"
-	], 
-)
-
-```
+- Прилагаю скриншот таблицы после заполнения и наглядного представления на графике:
+![image](https://github.com/JASPERMOGLOT/DA-in-GameDev-lab1/assets/148428630/919eb209-d089-47bc-9c6d-12b4a9f9cddd)
 
 ## Задание 3
-### Какова роль параметра Lr? Ответьте на вопрос, приведите пример выполнения кода, который подтверждает ваш ответ. В качестве эксперимента можете изменить значение параметра.
+### Настройте на сцене Unity воспроизведение звуковых файлов, описывающих динамику изменения выбранной переменной.
 
-- Перечисленные в этом туториале действия могут быть выполнены запуском на исполнение скрипт-файла, доступного [в репозитории](https://github.com/Den1sovDm1triy/hfss-scripting/blob/main/ScreatingSphereInAEDT.py).
-- Для запуска скрипт-файла откройте Ansys Electronics Desktop. Перейдите во вкладку [Automation] - [Run Script] - [Выберите файл с именем ScreatingSphereInAEDT.py из репозитория].
+Ход работы:
 
-```py
+- Скачал звуковые файлы из игры Skyrim. Написал код, который воспроизводит звуки в зависимости от изменения здоровья.
+```csharp
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Networking;
+using SimpleJSON;
 
-import ScriptEnv
-ScriptEnv.Initialize("Ansoft.ElectronicsDesktop")
-oDesktop.RestoreWindow()
-oProject = oDesktop.NewProject()
-oProject.Rename("C:/Users/denisov.dv/Documents/Ansoft/SphereDIffraction.aedt", True)
-oProject.InsertDesign("HFSS", "HFSSDesign1", "HFSS Terminal Network", "")
-oDesign = oProject.SetActiveDesign("HFSSDesign1")
-oEditor = oDesign.SetActiveEditor("3D Modeler")
-oEditor.CreateSphere(
-	[
-		"NAME:SphereParameters",
-		"XCenter:="		, "0mm",
-		"YCenter:="		, "0mm",
-		"ZCenter:="		, "0mm",
-		"Radius:="		, "1.0770329614269mm"
-	], 
-)
+public class NewBehaviourScript : MonoBehaviour
+{
+    public AudioClip potionSound;
+    public AudioClip hitSound;
+    public AudioClip levelSound;
+    public AudioClip spellSound;
+    private AudioSource selectAudio;
+    private Dictionary<string, string> dataSet = new Dictionary<string, string>();
+    private bool statusStart = false;
+    private int i = 1;
 
+    void Start()
+    {
+        StartCoroutine(GoogleSheets());
+    }
+
+    void Update()
+    {
+        if (dataSet["Mon_" + i.ToString()] == "Зелье" & statusStart == false & i != dataSet.Count)
+        {
+            StartCoroutine(PlaySelectAudioPotion());
+            Debug.Log(dataSet["Mon_" + i.ToString()] + ". Значение здоровья: " + dataSet["Res_" + i.ToString()]);
+        }
+
+        if (dataSet["Mon_" + i.ToString()] == "Удар" & statusStart == false & i != dataSet.Count)
+        {
+            StartCoroutine(PlaySelectAudioHit());
+            Debug.Log(dataSet["Mon_" + i.ToString()] + ". Значение здоровья: " + dataSet["Res_" + i.ToString()]);
+        }
+
+        if (dataSet["Mon_" + i.ToString()] == "Заклинание" & statusStart == false & i != dataSet.Count)
+        {
+            StartCoroutine(PlaySelectAudioSpell());
+            Debug.Log(dataSet["Mon_" + i.ToString()] + ". Значение здоровья: " + dataSet["Res_" + i.ToString()]);
+        }
+        if (dataSet["Mon_" + i.ToString()] == "Уровень" & statusStart == false & i != dataSet.Count)
+        {
+            StartCoroutine(PlaySelectAudioLevel());
+            Debug.Log(dataSet["Mon_" + i.ToString()] + ". Значение здоровья: " + dataSet["Res_" + i.ToString()]);
+        }
+    }
+
+    IEnumerator GoogleSheets()
+    {
+        UnityWebRequest curentResp = UnityWebRequest.Get("https://sheets.googleapis.com/v4/spreadsheets/158XDckTfTL043QXg0QhYiG98SDOj31q3u6uaKYhDfxM/values/Лист1?key=AIzaSyDM5ARHWhoFT9gQDjZPJTt4jFV16tD6nTM");
+        yield return curentResp.SendWebRequest();
+        string rawResp = curentResp.downloadHandler.text;
+        var rawJson = JSON.Parse(rawResp);
+        foreach (var itemRawJson in rawJson["values"])
+        {
+            var parseJson = JSON.Parse(itemRawJson.ToString());
+            var selectRow = parseJson[0].AsStringList;
+            dataSet.Add(("Mon_" + selectRow[0]), (selectRow[1]));
+            dataSet.Add(("Res_" + selectRow[0]), (selectRow[3]));
+        }
+    }
+
+    IEnumerator PlaySelectAudioPotion()
+    {
+        statusStart = true;
+        selectAudio = GetComponent<AudioSource>();
+        selectAudio.clip = potionSound;
+        selectAudio.Play();
+        yield return new WaitForSeconds(3);
+        statusStart = false;
+        i++;
+    }
+    IEnumerator PlaySelectAudioHit()
+    {
+        statusStart = true;
+        selectAudio = GetComponent<AudioSource>();
+        selectAudio.clip = hitSound;
+        selectAudio.Play();
+        yield return new WaitForSeconds(3);
+        statusStart = false;
+        i++;
+    }
+    IEnumerator PlaySelectAudioSpell()
+    {
+        statusStart = true;
+        selectAudio = GetComponent<AudioSource>();
+        selectAudio.clip = spellSound;
+        selectAudio.Play();
+        yield return new WaitForSeconds(4);
+        statusStart = false;
+        i++;
+    }
+    IEnumerator PlaySelectAudioLevel()
+    {
+        statusStart = true;
+        selectAudio = GetComponent<AudioSource>();
+        selectAudio.clip = levelSound;
+        selectAudio.Play();
+        yield return new WaitForSeconds(4);
+        statusStart = false;
+        i++;
+    }
+}
 ```
+
+- Настроил воспроизведение звуков. Прилагаю скриншот:
+
+![image](https://github.com/JASPERMOGLOT/DA-in-GameDev-lab1/assets/148428630/2b818481-375c-4a69-bc69-1774c1541592)
+
 
 ## Выводы
 
-Абзац умных слов о том, что было сделано и что было узнано.
+- Научился передавать в Unity данные из Google Sheets с помощью Python.
 
 | Plugin | README |
 | ------ | ------ |

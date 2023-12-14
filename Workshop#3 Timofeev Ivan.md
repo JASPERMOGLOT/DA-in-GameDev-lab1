@@ -1,14 +1,13 @@
 # АНАЛИЗ ДАННЫХ И ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ [in GameDev]
-Отчет по лабораторной работе #1 выполнил(а):
-- Иванова Ивана Варкравтовна
-- РИ000024
+Отчет по лабораторной работе #3 выполнил(а):
+- Тимофеев Иван Дмитриевич
+- РИ220933
 Отметка о выполнении заданий (заполняется студентом):
 
 | Задание | Выполнение | Баллы |
 | ------ | ------ | ------ |
-| Задание 1 | # | 60 |
-| Задание 2 | # | 20 |
-| Задание 3 | # | 20 |
+| Задание 1 | *| 60 |
+| Задание 2 | * | 20 |
 
 знак "*" - задание выполнено; знак "#" - задание не выполнено;
 
@@ -26,104 +25,60 @@
 - Данные о работе: название работы, фио, группа, выполненные задания.
 - Цель работы.
 - Задание 1.
-- Код реализации выполнения задания. Визуализация результатов выполнения (если применимо).
+- Анализ переменных в игре. Таблицы и графики.
 - Задание 2.
-- Код реализации выполнения задания. Визуализация результатов выполнения (если применимо).
-- Задание 3.
-- Код реализации выполнения задания. Визуализация результатов выполнения (если применимо).
+- Визуализация результатов выполнения задания. 10 сцен на Unity.
 - Выводы.
 - ✨Magic ✨
 
 ## Цель работы
-Ознакомиться с основными операторами зыка Python на примере реализации линейной регрессии.
+Разработать оптимальный баланс для десяти уровней игры Dragon Picker
 
 ## Задание 1
-### Пошагово выполнить каждый пункт раздела "ход работы" с описанием и примерами реализации задач
+### Предложите вариант изменения найденных переменных для 10 уровней в игре. Визуализируйте изменение уровня сложности в таблице. 
 Ход работы:
-- Произвести подготовку данных для работы с алгоритмом линейной регрессии. 10 видов данных были установлены случайным образом, и данные находились в линейной зависимости. Данные преобразуются в формат массива, чтобы их можно было вычислить напрямую при использовании умножения и сложения.
 
-```py
+- Для начала необходим анализ переменных, изменяя которые, мы будет повышать сложность. Берем четыре переменные:
 
-In [ ]:
-#Import the required modules, numpy for calculation, and Matplotlib for drawing
-import numpy as np
-import matplotlib.pyplot as plt
-#This code is for jupyter Notebook only
-%matplotlib inline
+1) Speed - отвечает за скорость перемещения дракона. Для повышения сложности, мы, соответственно, будем её повышать.
+2) TimeBetweenEggDrop - время между падениями двух яиц. Чтобы повысить сложность, мы тоже будем уменьшать эту переменную.
+3) LeftRightDistance - отвечает за расстояние, в пределах которого может перемещаться дракон. Дабы усложнить геймплей, с каждым уровнем будет повышаться.
+4) ChanceDirection - Шанс, с которым дракон может изменить направление полета. Чтобы запутать игрока, с каждым уровнем будем увеличивать эту переменную.
 
-# define data, and change list to array
-x = [3,21,22,34,54,34,55,67,89,99]
-x = np.array(x)
-y = [2,22,24,65,79,82,55,130,150,199]
-y = np.array(y)
+- Визуализируем данные в таблице. Построим графики изменения переменных и процента сложности в зависимости от уровня:
 
-#Show the effect of a scatter plot
-plt.scatter(x,y)
-
-```
-
-- Определите связанные функции. Функция модели: определяет модель линейной регрессии wx+b. Функция потерь: функция потерь среднеквадратичной ошибки. Функция оптимизации: метод градиентного спуска для нахождения частных производных w и b.
+![2023-12-15_00-52-35](https://github.com/JASPERMOGLOT/DA-in-GameDev-lab1/assets/148428630/d127d089-a6a3-491d-88ad-14677201cf43)
 
 
 ## Задание 2
-### Должна ли величина loss стремиться к нулю при изменении исходных данных? Ответьте на вопрос, приведите пример выполнения кода, который подтверждает ваш ответ.
+### Создайте 10 сцен на Unity с изменяющимся уровнем сложности.
 
-- Перечисленные в этом туториале действия могут быть выполнены запуском на исполнение скрипт-файла, доступного [в репозитории](https://github.com/Den1sovDm1triy/hfss-scripting/blob/main/ScreatingSphereInAEDT.py).
-- Для запуска скрипт-файла откройте Ansys Electronics Desktop. Перейдите во вкладку [Automation] - [Run Script] - [Выберите файл с именем ScreatingSphereInAEDT.py из репозитория].
+- Прикрепляю скриншоты сцен с разным уровнем сложности:
 
-```py
+![1](https://github.com/JASPERMOGLOT/DA-in-GameDev-lab1/assets/148428630/865790e8-cf40-487e-ab57-527b3d911e4a)
 
-import ScriptEnv
-ScriptEnv.Initialize("Ansoft.ElectronicsDesktop")
-oDesktop.RestoreWindow()
-oProject = oDesktop.NewProject()
-oProject.Rename("C:/Users/denisov.dv/Documents/Ansoft/SphereDIffraction.aedt", True)
-oProject.InsertDesign("HFSS", "HFSSDesign1", "HFSS Terminal Network", "")
-oDesign = oProject.SetActiveDesign("HFSSDesign1")
-oEditor = oDesign.SetActiveEditor("3D Modeler")
-oEditor.CreateSphere(
-	[
-		"NAME:SphereParameters",
-		"XCenter:="		, "0mm",
-		"YCenter:="		, "0mm",
-		"ZCenter:="		, "0mm",
-		"Radius:="		, "1.0770329614269mm"
-	], 
-)
+![2](https://github.com/JASPERMOGLOT/DA-in-GameDev-lab1/assets/148428630/c3f235d2-5ffe-4760-9383-e9f6fbf7d4f4)
 
-```
+![3](https://github.com/JASPERMOGLOT/DA-in-GameDev-lab1/assets/148428630/fb92cb6d-8916-4299-91d7-b5ab9c8bd79b)
 
-## Задание 3
-### Какова роль параметра Lr? Ответьте на вопрос, приведите пример выполнения кода, который подтверждает ваш ответ. В качестве эксперимента можете изменить значение параметра.
+![4](https://github.com/JASPERMOGLOT/DA-in-GameDev-lab1/assets/148428630/916245ef-f98a-4be0-b308-68d9c777086c)
 
-- Перечисленные в этом туториале действия могут быть выполнены запуском на исполнение скрипт-файла, доступного [в репозитории](https://github.com/Den1sovDm1triy/hfss-scripting/blob/main/ScreatingSphereInAEDT.py).
-- Для запуска скрипт-файла откройте Ansys Electronics Desktop. Перейдите во вкладку [Automation] - [Run Script] - [Выберите файл с именем ScreatingSphereInAEDT.py из репозитория].
+![5](https://github.com/JASPERMOGLOT/DA-in-GameDev-lab1/assets/148428630/7947e22a-0817-4c9e-be39-8f1db65a87bf)
 
-```py
+![6](https://github.com/JASPERMOGLOT/DA-in-GameDev-lab1/assets/148428630/261c3214-b4d0-42a4-81b5-5c1729929083)
 
-import ScriptEnv
-ScriptEnv.Initialize("Ansoft.ElectronicsDesktop")
-oDesktop.RestoreWindow()
-oProject = oDesktop.NewProject()
-oProject.Rename("C:/Users/denisov.dv/Documents/Ansoft/SphereDIffraction.aedt", True)
-oProject.InsertDesign("HFSS", "HFSSDesign1", "HFSS Terminal Network", "")
-oDesign = oProject.SetActiveDesign("HFSSDesign1")
-oEditor = oDesign.SetActiveEditor("3D Modeler")
-oEditor.CreateSphere(
-	[
-		"NAME:SphereParameters",
-		"XCenter:="		, "0mm",
-		"YCenter:="		, "0mm",
-		"ZCenter:="		, "0mm",
-		"Radius:="		, "1.0770329614269mm"
-	], 
-)
+![7](https://github.com/JASPERMOGLOT/DA-in-GameDev-lab1/assets/148428630/d4195b0a-2171-4b39-9005-77096d089b7c)
 
-```
+![8](https://github.com/JASPERMOGLOT/DA-in-GameDev-lab1/assets/148428630/e225228a-042e-4a46-8665-53604ddcd2d0)
+
+![9](https://github.com/JASPERMOGLOT/DA-in-GameDev-lab1/assets/148428630/2c550fd2-f0bb-4917-bde7-4e9e5b183685)
+
+![10](https://github.com/JASPERMOGLOT/DA-in-GameDev-lab1/assets/148428630/3932a1e6-8c2a-413b-a3b4-1be96ac638c0)
+
 
 ## Выводы
 
-Абзац умных слов о том, что было сделано и что было узнано.
+Узнал о балансе в играх. Настроил баланс в игре Dragon Picker. Сделал таблицы с изменением переменных, построил график сложности.
 
 | Plugin | README |
 | ------ | ------ |
